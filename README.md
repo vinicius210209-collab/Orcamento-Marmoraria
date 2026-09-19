@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Orçamento - Marmoraria Pedras do Vale</title>
 
   <!-- Biblioteca para geração do PDF -->
@@ -123,7 +122,7 @@
     }
 
     textarea {
-      min-height: 100px;
+      min-height: 120px;
       resize: vertical;
       line-height: 1.5;
       font-family: inherit;
@@ -185,7 +184,7 @@
     }
 
     .btn-submit:disabled {
-      opacity: 0.7;
+      opacity: 0.6;
       cursor: wait;
     }
   </style>
@@ -206,8 +205,7 @@
 
           <p>
             <strong>CNPJ:</strong> 68.952.061/0001-92<br>
-            <strong>Telefones:</strong>
-            (12) 99221-0262 / (12) 92000-3358
+            <strong>Telefones:</strong> (12) 99221-0262 / (12) 92000-3358
           </p>
 
         </div>
@@ -297,7 +295,7 @@
       </div>
 
 
-      <!-- DESCRIÇÃO DO SERVIÇO -->
+      <!-- DESCRIÇÃO DO SERVIÇO / PEÇAS -->
 
       <div class="section-title">
         Descrição do Serviço / Peças
@@ -386,7 +384,7 @@
 
           <textarea
             id="descricaoProduto"
-            placeholder="Digite a descrição do produto. Pressione Enter para adicionar novas linhas."
+            placeholder="Digite a descrição. Pressione Enter para criar uma nova linha."
           ></textarea>
 
         </div>
@@ -409,7 +407,7 @@
       </div>
 
 
-      <!-- PAGAMENTO -->
+      <!-- PAGAMENTO E VALORES -->
 
       <div class="section-title">
         Pagamento e Valores
@@ -471,8 +469,6 @@
       </div>
 
 
-      <!-- BOTÃO -->
-
       <button
         type="submit"
         class="btn-submit"
@@ -504,8 +500,6 @@
         canvas.getContext('2d');
 
 
-      /* Sol */
-
       ctx.fillStyle = '#f1c40f';
 
       ctx.beginPath();
@@ -521,8 +515,6 @@
       ctx.fill();
 
 
-      /* Montanha esquerda */
-
       ctx.fillStyle = '#27ae60';
 
       ctx.beginPath();
@@ -535,8 +527,6 @@
 
       ctx.fill();
 
-
-      /* Montanha central */
 
       ctx.fillStyle = '#2e7d32';
 
@@ -551,8 +541,6 @@
       ctx.fill();
 
 
-      /* Montanha direita */
-
       ctx.fillStyle = '#1b5e20';
 
       ctx.beginPath();
@@ -565,8 +553,6 @@
 
       ctx.fill();
 
-
-      /* Texto */
 
       ctx.fillStyle = '#1a252f';
 
@@ -593,7 +579,7 @@
 
 
     /* =====================================================
-       QUEBRA DE TEXTO PARA O PDF
+       QUEBRA DE TEXTO
     ===================================================== */
 
     function quebrarTexto(
@@ -603,87 +589,98 @@
       larguraMaxima
     ) {
 
-      const resultado = [];
+      const linhas = [];
 
       const paragrafos =
-        texto.split(/\r?\n/);
+        String(texto).split(/\r?\n/);
 
 
-      paragrafos.forEach(
-        function(paragrafo) {
+      for (
+        let p = 0;
+        p < paragrafos.length;
+        p++
+      ) {
+
+        const paragrafo =
+          paragrafos[p];
+
+
+        if (
+          paragrafo.trim() === ''
+        ) {
+
+          linhas.push('');
+
+          continue;
+
+        }
+
+
+        const palavras =
+          paragrafo.trim().split(/\s+/);
+
+
+        let linha = '';
+
+
+        for (
+          let i = 0;
+          i < palavras.length;
+          i++
+        ) {
+
+          const palavra =
+            palavras[i];
+
+
+          const teste =
+            linha === ''
+              ? palavra
+              : linha + ' ' + palavra;
+
+
+          const largura =
+            fonte.widthOfTextAtSize(
+              teste,
+              tamanho
+            );
+
 
           if (
-            paragrafo.trim() === ''
+            largura <= larguraMaxima
           ) {
 
-            resultado.push('');
+            linha = teste;
 
-            return;
-          }
+          } else {
 
+            if (
+              linha !== ''
+            ) {
 
-          const palavras =
-            paragrafo
-              .trim()
-              .split(/\s+/);
-
-
-          let linhaAtual = '';
-
-
-          palavras.forEach(
-            function(palavra) {
-
-              const teste =
-                linhaAtual === ''
-                  ? palavra
-                  : linhaAtual + ' ' + palavra;
-
-
-              const largura =
-                fonte.widthOfTextAtSize(
-                  teste,
-                  tamanho
-                );
-
-
-              if (
-                largura <= larguraMaxima
-              ) {
-
-                linhaAtual = teste;
-
-              } else {
-
-                if (linhaAtual !== '') {
-
-                  resultado.push(
-                    linhaAtual
-                  );
-
-                }
-
-                linhaAtual = palavra;
-
-              }
+              linhas.push(linha);
 
             }
-          );
 
-
-          if (linhaAtual !== '') {
-
-            resultado.push(
-              linhaAtual
-            );
+            linha = palavra;
 
           }
 
         }
-      );
 
 
-      return resultado;
+        if (
+          linha !== ''
+        ) {
+
+          linhas.push(linha);
+
+        }
+
+      }
+
+
+      return linhas;
     }
 
 
@@ -691,7 +688,7 @@
        DOWNLOAD DO PDF
     ===================================================== */
 
-    function baixarPDF(
+    async function baixarPDF(
       pdfBytes,
       nomeArquivo
     ) {
@@ -704,6 +701,69 @@
           }
         );
 
+
+      /*
+       * No Android/Chrome e na maioria dos
+       * navegadores atuais, usamos o compartilhamento
+       * de arquivos quando disponível.
+       */
+
+      if (
+        navigator.share &&
+        typeof File !== 'undefined'
+      ) {
+
+        try {
+
+          const arquivo =
+            new File(
+              [pdfBytes],
+              nomeArquivo,
+              {
+                type: 'application/pdf'
+              }
+            );
+
+
+          if (
+            navigator.canShare &&
+            navigator.canShare({
+              files: [arquivo]
+            })
+          ) {
+
+            await navigator.share({
+              files: [arquivo],
+              title: 'Orçamento - Pedras do Vale'
+            });
+
+            return;
+
+          }
+
+        } catch (erro) {
+
+          /*
+           * Se o usuário cancelar o compartilhamento,
+           * não mostra erro.
+           */
+
+          if (
+            erro.name === 'AbortError'
+          ) {
+
+            return;
+
+          }
+
+        }
+
+      }
+
+
+      /*
+       * Método principal de download.
+       */
 
       const url =
         URL.createObjectURL(blob);
@@ -718,42 +778,92 @@
       link.download =
         nomeArquivo;
 
+      link.setAttribute(
+        'download',
+        nomeArquivo
+      );
 
-      document.body.appendChild(link);
+      link.style.position =
+        'fixed';
+
+      link.style.left =
+        '-9999px';
+
+      link.style.top =
+        '-9999px';
+
+
+      document.body.appendChild(
+        link
+      );
+
+
+      /*
+       * Dispara o download.
+       */
 
       link.click();
 
-      document.body.removeChild(link);
 
+      /*
+       * Limpa o elemento.
+       */
 
       setTimeout(
         function() {
 
-          URL.revokeObjectURL(url);
+          if (
+            link.parentNode
+          ) {
+
+            link.parentNode.removeChild(
+              link
+            );
+
+          }
+
+          URL.revokeObjectURL(
+            url
+          );
 
         },
-        1000
+        3000
       );
+
     }
 
 
     /* =====================================================
-       GERAR PDF
+       FORMULÁRIO
     ===================================================== */
 
     document
       .getElementById('orcamentoForm')
       .addEventListener(
         'submit',
-        async function(event) {
+        async function(e) {
 
-          event.preventDefault();
+          e.preventDefault();
 
 
           const botao =
             document.getElementById(
               'btnGerarPDF'
             );
+
+
+          /*
+           * Evita dois PDFs sendo gerados
+           * ao mesmo tempo.
+           */
+
+          if (
+            botao.disabled
+          ) {
+
+            return;
+
+          }
 
 
           botao.disabled = true;
@@ -764,14 +874,16 @@
 
           try {
 
-            /* Verifica biblioteca */
+            /* =============================================
+               VERIFICAÇÃO DA BIBLIOTECA
+            ============================================= */
 
             if (
               typeof PDFLib === 'undefined'
             ) {
 
               throw new Error(
-                'A biblioteca do PDF não foi carregada. Verifique sua conexão com a internet.'
+                'A biblioteca de geração de PDF não foi carregada. Verifique sua conexão com a internet e recarregue a página.'
               );
 
             }
@@ -784,9 +896,9 @@
             } = PDFLib;
 
 
-            /* =================================================
-               PEGAR DADOS
-            ================================================= */
+            /* =============================================
+               DADOS DO FORMULÁRIO
+            ============================================= */
 
             const nome =
               document
@@ -846,7 +958,9 @@
 
             const descricaoProduto =
               document
-                .getElementById('descricaoProduto')
+                .getElementById(
+                  'descricaoProduto'
+                )
                 .value || 'N/A';
 
 
@@ -878,9 +992,9 @@
                 .trim();
 
 
-            /* =================================================
-               CRIAR PDF
-            ================================================= */
+            /* =============================================
+               CRIA PDF
+            ============================================= */
 
             const pdfDoc =
               await PDFDocument.create();
@@ -928,16 +1042,16 @@
               );
 
 
-            /* =================================================
-               FUNÇÃO PARA DESENHAR CAIXA
-            ================================================= */
+            /* =============================================
+               CAIXA
+            ============================================= */
 
             function drawBox(
               x,
               y,
               width,
               height,
-              borderWidth
+              borderWidth = 1.2
             ) {
 
               page.drawRectangle({
@@ -953,16 +1067,16 @@
                 borderColor: black,
 
                 borderWidth:
-                  borderWidth || 1.2
+                  borderWidth
 
               });
 
             }
 
 
-            /* =================================================
+            /* =============================================
                CABEÇALHO
-            ================================================= */
+            ============================================= */
 
             drawBox(
               25,
@@ -994,89 +1108,4 @@
                 font: fontBold,
                 color: darkGray
               }
-            );
-
-
-            page.drawText(
-              'CONTATO: (12) 99221-0262 / (12) 92000-3358',
-              {
-                x: 35,
-                y: 750,
-                size: 10,
-                font: fontBold,
-                color: darkGray
-              }
-            );
-
-
-            /* Logo */
-
-            const logoDataUrl =
-              getLogoBase64();
-
-
-            const logoImage =
-              await pdfDoc.embedPng(
-                logoDataUrl
-              );
-
-
-            page.drawImage(
-              logoImage,
-              {
-                x: 425,
-                y: 740,
-                width: 135,
-                height: 68
-              }
-            );
-
-
-            /* =================================================
-               DADOS DO CLIENTE
-            ================================================= */
-
-            let y = 705;
-
-
-            page.drawText(
-              'DADOS DO CLIENTE',
-              {
-                x: 25,
-                y: y,
-                size: 12,
-                font: fontBold,
-                color: black
-              }
-            );
-
-
-            y -= 45;
-
-
-            drawBox(
-              25,
-              y,
-              545,
-              38,
-              1.2
-            );
-
-
-            page.drawText(
-              `Nome: ${nome}`,
-              {
-                x: 35,
-                y: y + 13,
-                size: 11,
-                font: fontBold,
-                color: black
-              }
-            );
-
-
-            page.drawText(
-              `Telefone: ${telefone}`,
-              {
-                x: 360,
               
