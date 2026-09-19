@@ -1,8 +1,15 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Orçamento - Marmoraria Pedras do Vale</title>  <!-- Biblioteca para geração do PDF -->  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>  <style>
+
+  <title>Orçamento - Marmoraria Pedras do Vale</title>
+
+  <!-- Biblioteca para geração do PDF -->
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
+  <style>
     * {
       box-sizing: border-box;
       margin: 0;
@@ -181,1035 +188,895 @@
       opacity: 0.7;
       cursor: wait;
     }
-  </style></head><body>  <div class="form-container"><form id="orcamentoForm">
+  </style>
+</head>
 
-  <!-- CABEÇALHO -->
-  <div class="form-header">
+<body>
 
-    <div class="header-info">
+  <div class="form-container">
 
-      <h1>MARMORARIA PEDRAS DO VALE</h1>
+    <form id="orcamentoForm">
 
-      <p>
-        <strong>CNPJ:</strong> 68.952.061/0001-92<br>
-        <strong>Telefones:</strong>
-        (12) 99221-0262 / (12) 92000-3358
-      </p>
+      <!-- CABEÇALHO -->
+      <div class="form-header">
 
-    </div>
+        <div class="header-info">
 
-    <div class="logo-box">
-      PEDRAS DO VALE<br>
-      <span style="font-size: 9px; font-weight: normal;">
-        PROJETOS & ACABAMENTOS
-      </span>
-    </div>
+          <h1>MARMORARIA PEDRAS DO VALE</h1>
 
-  </div>
+          <p>
+            <strong>CNPJ:</strong> 68.952.061/0001-92<br>
+            <strong>Telefones:</strong>
+            (12) 99221-0262 / (12) 92000-3358
+          </p>
 
+        </div>
 
-  <!-- DADOS DO CLIENTE -->
+        <div class="logo-box">
+          PEDRAS DO VALE<br>
+          <span style="font-size: 9px; font-weight: normal;">
+            PROJETOS & ACABAMENTOS
+          </span>
+        </div>
 
-  <div class="section-title">
-    Dados do Cliente
-  </div>
-
-
-  <div class="card">
-
-    <label class="question-label" for="nome">
-      Nome do Cliente <span class="required">*</span>
-    </label>
-
-    <input
-      type="text"
-      id="nome"
-      placeholder="Digite o nome completo"
-      required
-    >
-
-  </div>
+      </div>
 
 
-  <div class="card grid-2">
+      <!-- DADOS DO CLIENTE -->
 
-    <div>
+      <div class="section-title">
+        Dados do Cliente
+      </div>
 
-      <label class="question-label" for="telefone">
-        Telefone <span class="required">*</span>
-      </label>
 
-      <input
-        type="tel"
-        id="telefone"
-        placeholder="(12) 00000-0000"
-        required
+      <div class="card">
+
+        <label class="question-label" for="nome">
+          Nome do Cliente <span class="required">*</span>
+        </label>
+
+        <input
+          type="text"
+          id="nome"
+          placeholder="Digite o nome completo"
+          required
+        >
+
+      </div>
+
+
+      <div class="card grid-2">
+
+        <div>
+
+          <label class="question-label" for="telefone">
+            Telefone <span class="required">*</span>
+          </label>
+
+          <input
+            type="tel"
+            id="telefone"
+            placeholder="(12) 00000-0000"
+            required
+          >
+
+        </div>
+
+
+        <div>
+
+          <label class="question-label" for="cidade">
+            Cidade <span class="required">*</span>
+          </label>
+
+          <input
+            type="text"
+            id="cidade"
+            placeholder="Digite a cidade"
+            required
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <label class="question-label" for="endereco">
+          Endereço da Obra <span class="required">*</span>
+        </label>
+
+        <input
+          type="text"
+          id="endereco"
+          placeholder="Rua, número, bairro..."
+          required
+        >
+
+      </div>
+
+
+      <!-- DESCRIÇÃO DO SERVIÇO -->
+
+      <div class="section-title">
+        Descrição do Serviço / Peças
+      </div>
+
+
+      <div class="card grid-2">
+
+        <div>
+
+          <label class="question-label" for="material">
+            Material <span class="required">*</span>
+          </label>
+
+          <input
+            type="text"
+            id="material"
+            placeholder="Ex: Granito Preto São Gabriel"
+            required
+          >
+
+        </div>
+
+
+        <div>
+
+          <label class="question-label" for="acabamento">
+            Acabamento <span class="required">*</span>
+          </label>
+
+          <input
+            type="text"
+            id="acabamento"
+            placeholder="Ex: Meia Esquadria (45°) / Polido"
+            required
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="card grid-2">
+
+        <div>
+
+          <label class="question-label" for="frontao">
+            Frontão
+          </label>
+
+          <input
+            type="text"
+            id="frontao"
+            placeholder="Ex: 10 cm"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label class="question-label" for="saia">
+            Saia
+          </label>
+
+          <input
+            type="text"
+            id="saia"
+            placeholder="Ex: 4 cm"
+          >
+
+        </div>
+
+      </div>
+
+
+      <!-- DESCRIÇÃO DO PRODUTO -->
+
+      <div class="card grid-2">
+
+        <div>
+
+          <label class="question-label" for="descricaoProduto">
+            Descrição do produto
+          </label>
+
+          <textarea
+            id="descricaoProduto"
+            placeholder="Digite a descrição do produto. Pressione Enter para adicionar novas linhas."
+          ></textarea>
+
+        </div>
+
+
+        <div>
+
+          <label class="question-label" for="materiais">
+            Materiais (Ferro / Instalação)
+          </label>
+
+          <input
+            type="text"
+            id="materiais"
+            placeholder="Ex: Suporte de ferro + instalação"
+          >
+
+        </div>
+
+      </div>
+
+
+      <!-- PAGAMENTO -->
+
+      <div class="section-title">
+        Pagamento e Valores
+      </div>
+
+
+      <div class="card">
+
+        <label class="question-label">
+          Forma de Pagamento Editável
+        </label>
+
+
+        <div class="payment-row">
+
+          <span>À Vista / PIX:</span>
+
+          <input
+            type="text"
+            id="pag_avista"
+            placeholder="Ex: R$ 2.500,00 (5% desconto)"
+          >
+
+        </div>
+
+
+        <div class="payment-row">
+
+          <span>No Cartão:</span>
+
+          <input
+            type="text"
+            id="pag_cartao"
+            placeholder="Ex: 3x de R$ 900,00 sem juros"
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <label
+          class="question-label"
+          for="valor_total"
+        >
+          Valor Total do Orçamento (R$)
+          <span class="required">*</span>
+        </label>
+
+        <input
+          type="text"
+          id="valor_total"
+          placeholder="R$ 2.700,00"
+          required
+        >
+
+      </div>
+
+
+      <!-- BOTÃO -->
+
+      <button
+        type="submit"
+        class="btn-submit"
+        id="btnGerarPDF"
       >
+        GERAR ORÇAMENTO EM PDF
+      </button>
 
-    </div>
-
-
-    <div>
-
-      <label class="question-label" for="cidade">
-        Cidade <span class="required">*</span>
-      </label>
-
-      <input
-        type="text"
-        id="cidade"
-        placeholder="Digite a cidade"
-        required
-      >
-
-    </div>
+    </form>
 
   </div>
 
 
-  <div class="card">
+  <script>
 
-    <label class="question-label" for="endereco">
-      Endereço da Obra <span class="required">*</span>
-    </label>
+    /* =====================================================
+       LOGO
+    ===================================================== */
 
-    <input
-      type="text"
-      id="endereco"
-      placeholder="Rua, número, bairro..."
-      required
-    >
+    function getLogoBase64() {
 
-  </div>
+      const canvas =
+        document.createElement('canvas');
 
+      canvas.width = 400;
+      canvas.height = 200;
 
-  <!-- DESCRIÇÃO DO SERVIÇO / PEÇAS -->
+      const ctx =
+        canvas.getContext('2d');
 
-  <div class="section-title">
-    Descrição do Serviço / Peças
-  </div>
 
+      /* Sol */
 
-  <div class="card grid-2">
+      ctx.fillStyle = '#f1c40f';
 
-    <div>
+      ctx.beginPath();
 
-      <label class="question-label" for="material">
-        Material <span class="required">*</span>
-      </label>
+      ctx.arc(
+        120,
+        55,
+        24,
+        0,
+        Math.PI * 2
+      );
 
-      <input
-        type="text"
-        id="material"
-        placeholder="Ex: Granito Preto São Gabriel"
-        required
-      >
+      ctx.fill();
 
-    </div>
 
+      /* Montanha esquerda */
 
-    <div>
+      ctx.fillStyle = '#27ae60';
 
-      <label class="question-label" for="acabamento">
-        Acabamento <span class="required">*</span>
-      </label>
+      ctx.beginPath();
 
-      <input
-        type="text"
-        id="acabamento"
-        placeholder="Ex: Meia Esquadria (45°) / Polido"
-        required
-      >
+      ctx.moveTo(80, 115);
+      ctx.lineTo(110, 75);
+      ctx.lineTo(140, 115);
 
-    </div>
+      ctx.closePath();
 
-  </div>
+      ctx.fill();
 
 
-  <div class="card grid-2">
+      /* Montanha central */
 
-    <div>
+      ctx.fillStyle = '#2e7d32';
 
-      <label class="question-label" for="frontao">
-        Frontão
-      </label>
+      ctx.beginPath();
 
-      <input
-        type="text"
-        id="frontao"
-        placeholder="Ex: 10 cm"
-      >
+      ctx.moveTo(120, 115);
+      ctx.lineTo(160, 50);
+      ctx.lineTo(200, 115);
 
-    </div>
+      ctx.closePath();
 
+      ctx.fill();
 
-    <div>
 
-      <label class="question-label" for="saia">
-        Saia
-      </label>
+      /* Montanha direita */
 
-      <input
-        type="text"
-        id="saia"
-        placeholder="Ex: 4 cm"
-      >
+      ctx.fillStyle = '#1b5e20';
 
-    </div>
+      ctx.beginPath();
 
-  </div>
+      ctx.moveTo(170, 115);
+      ctx.lineTo(210, 60);
+      ctx.lineTo(250, 115);
 
+      ctx.closePath();
 
-  <!-- DESCRIÇÃO DO PRODUTO -->
+      ctx.fill();
 
-  <div class="card grid-2">
 
-    <div>
+      /* Texto */
 
-      <label class="question-label" for="descricaoProduto">
-        Descrição do produto
-      </label>
+      ctx.fillStyle = '#1a252f';
 
-      <textarea
-        id="descricaoProduto"
-        placeholder="Digite a descrição do produto. Pressione Enter para adicionar novas linhas."
-      ></textarea>
+      ctx.font = 'bold 15px Arial';
 
-    </div>
+      ctx.fillText(
+        '— MARMORARIA —',
+        90,
+        132
+      );
 
 
-    <div>
+      ctx.font = 'bold 26px Arial';
 
-      <label class="question-label" for="materiais">
-        Materiais (Ferro / Instalação)
-      </label>
+      ctx.fillText(
+        'PEDRAS DO VALE',
+        40,
+        162
+      );
 
-      <input
-        type="text"
-        id="materiais"
-        placeholder="Ex: Suporte de ferro + instalação"
-      >
 
-    </div>
-
-  </div>
-
-
-  <!-- PAGAMENTO E VALORES -->
-
-  <div class="section-title">
-    Pagamento e Valores
-  </div>
-
-
-  <div class="card">
-
-    <label class="question-label">
-      Forma de Pagamento Editável
-    </label>
-
-
-    <div class="payment-row">
-
-      <span>À Vista / PIX:</span>
-
-      <input
-        type="text"
-        id="pag_avista"
-        placeholder="Ex: R$ 2.500,00 (5% desconto)"
-      >
-
-    </div>
-
-
-    <div class="payment-row">
-
-      <span>No Cartão:</span>
-
-      <input
-        type="text"
-        id="pag_cartao"
-        placeholder="Ex: 3x de R$ 900,00 sem juros"
-      >
-
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <label
-      class="question-label"
-      for="valor_total"
-    >
-      Valor Total do Orçamento (R$)
-      <span class="required">*</span>
-    </label>
-
-    <input
-      type="text"
-      id="valor_total"
-      placeholder="R$ 2.700,00"
-      required
-    >
-
-  </div>
-
-
-  <button
-    type="submit"
-    class="btn-submit"
-    id="btnGerarPDF"
-  >
-    GERAR ORÇAMENTO EM PDF
-  </button>
-
-</form>
-
-  </div><script>
-
-/* =========================================================
-   LOGO
-========================================================= */
-
-function getLogoBase64() {
-
-  const canvas = document.createElement('canvas');
-
-  canvas.width = 400;
-  canvas.height = 200;
-
-  const ctx = canvas.getContext('2d');
-
-
-  /* Sol */
-
-  ctx.fillStyle = '#f1c40f';
-
-  ctx.beginPath();
-
-  ctx.arc(
-    120,
-    55,
-    24,
-    0,
-    Math.PI * 2
-  );
-
-  ctx.fill();
-
-
-  /* Montanha esquerda */
-
-  ctx.fillStyle = '#27ae60';
-
-  ctx.beginPath();
-
-  ctx.moveTo(80,115);
-  ctx.lineTo(110,75);
-  ctx.lineTo(140,115);
-
-  ctx.closePath();
-
-  ctx.fill();
-
-
-  /* Montanha central */
-
-  ctx.fillStyle = '#2e7d32';
-
-  ctx.beginPath();
-
-  ctx.moveTo(120,115);
-  ctx.lineTo(160,50);
-  ctx.lineTo(200,115);
-
-  ctx.closePath();
-
-  ctx.fill();
-
-
-  /* Montanha direita */
-
-  ctx.fillStyle = '#1b5e20';
-
-  ctx.beginPath();
-
-  ctx.moveTo(170,115);
-  ctx.lineTo(210,60);
-  ctx.lineTo(250,115);
-
-  ctx.closePath();
-
-  ctx.fill();
-
-
-  /* Texto */
-
-  ctx.fillStyle = '#1a252f';
-
-  ctx.font = 'bold 15px Arial';
-
-  ctx.fillText(
-    '— MARMORARIA —',
-    90,
-    132
-  );
-
-
-  ctx.font = 'bold 26px Arial';
-
-  ctx.fillText(
-    'PEDRAS DO VALE',
-    40,
-    162
-  );
-
-
-  return canvas.toDataURL('image/png');
-}
-
-
-/* =========================================================
-   QUEBRA DE TEXTO
-========================================================= */
-
-function quebrarTexto(
-  texto,
-  fonte,
-  tamanho,
-  larguraMaxima
-) {
-
-  const resultado = [];
-
-  /*
-   * Primeiro respeitamos os ENTER digitados pelo usuário.
-   */
-
-  const paragrafos =
-    texto.split(/\r?\n/);
-
-
-  paragrafos.forEach(paragrafo => {
-
-    /*
-     * Linha vazia = mantém espaço.
-     */
-
-    if (paragrafo.trim() === '') {
-
-      resultado.push('');
-
-      return;
+      return canvas.toDataURL('image/png');
     }
 
 
-    const palavras =
-      paragrafo.trim().split(/\s+/);
+    /* =====================================================
+       QUEBRA DE TEXTO PARA O PDF
+    ===================================================== */
+
+    function quebrarTexto(
+      texto,
+      fonte,
+      tamanho,
+      larguraMaxima
+    ) {
+
+      const resultado = [];
+
+      const paragrafos =
+        texto.split(/\r?\n/);
 
 
-    let linhaAtual = '';
+      paragrafos.forEach(
+        function(paragrafo) {
+
+          if (
+            paragrafo.trim() === ''
+          ) {
+
+            resultado.push('');
+
+            return;
+          }
 
 
-    palavras.forEach(palavra => {
-
-      const teste =
-        linhaAtual === ''
-          ? palavra
-          : linhaAtual + ' ' + palavra;
+          const palavras =
+            paragrafo
+              .trim()
+              .split(/\s+/);
 
 
-      const largura =
-        fonte.widthOfTextAtSize(
-          teste,
-          tamanho
+          let linhaAtual = '';
+
+
+          palavras.forEach(
+            function(palavra) {
+
+              const teste =
+                linhaAtual === ''
+                  ? palavra
+                  : linhaAtual + ' ' + palavra;
+
+
+              const largura =
+                fonte.widthOfTextAtSize(
+                  teste,
+                  tamanho
+                );
+
+
+              if (
+                largura <= larguraMaxima
+              ) {
+
+                linhaAtual = teste;
+
+              } else {
+
+                if (linhaAtual !== '') {
+
+                  resultado.push(
+                    linhaAtual
+                  );
+
+                }
+
+                linhaAtual = palavra;
+
+              }
+
+            }
+          );
+
+
+          if (linhaAtual !== '') {
+
+            resultado.push(
+              linhaAtual
+            );
+
+          }
+
+        }
+      );
+
+
+      return resultado;
+    }
+
+
+    /* =====================================================
+       DOWNLOAD DO PDF
+    ===================================================== */
+
+    function baixarPDF(
+      pdfBytes,
+      nomeArquivo
+    ) {
+
+      const blob =
+        new Blob(
+          [pdfBytes],
+          {
+            type: 'application/pdf'
+          }
         );
 
 
-      if (
-        largura <= larguraMaxima
-      ) {
-
-        linhaAtual = teste;
-
-      } else {
-
-        if (linhaAtual !== '') {
-
-          resultado.push(
-            linhaAtual
-          );
-
-        }
+      const url =
+        URL.createObjectURL(blob);
 
 
-        /*
-         * Palavra extremamente grande.
-         * Também evita quebrar o PDF.
-         */
+      const link =
+        document.createElement('a');
 
-        if (
-          fonte.widthOfTextAtSize(
-            palavra,
-            tamanho
-          ) > larguraMaxima
-        ) {
 
-          let parte = '';
+      link.href = url;
 
-          for (
-            let i = 0;
-            i < palavra.length;
-            i++
-          ) {
+      link.download =
+        nomeArquivo;
 
-            const testeParte =
-              parte + palavra[i];
+
+      document.body.appendChild(link);
+
+      link.click();
+
+      document.body.removeChild(link);
+
+
+      setTimeout(
+        function() {
+
+          URL.revokeObjectURL(url);
+
+        },
+        1000
+      );
+    }
+
+
+    /* =====================================================
+       GERAR PDF
+    ===================================================== */
+
+    document
+      .getElementById('orcamentoForm')
+      .addEventListener(
+        'submit',
+        async function(event) {
+
+          event.preventDefault();
+
+
+          const botao =
+            document.getElementById(
+              'btnGerarPDF'
+            );
+
+
+          botao.disabled = true;
+
+          botao.textContent =
+            'GERANDO PDF...';
+
+
+          try {
+
+            /* Verifica biblioteca */
 
             if (
-              fonte.widthOfTextAtSize(
-                testeParte,
-                tamanho
-              ) <= larguraMaxima
+              typeof PDFLib === 'undefined'
             ) {
 
-              parte = testeParte;
-
-            } else {
-
-              if (parte) {
-                resultado.push(parte);
-              }
-
-              parte = palavra[i];
+              throw new Error(
+                'A biblioteca do PDF não foi carregada. Verifique sua conexão com a internet.'
+              );
 
             }
 
-          }
 
-          linhaAtual = parte;
+            const {
+              PDFDocument,
+              rgb,
+              StandardFonts
+            } = PDFLib;
 
-        } else {
 
-          linhaAtual = palavra;
+            /* =================================================
+               PEGAR DADOS
+            ================================================= */
 
-        }
+            const nome =
+              document
+                .getElementById('nome')
+                .value
+                .trim();
 
-      }
 
-    });
+            const telefone =
+              document
+                .getElementById('telefone')
+                .value
+                .trim();
 
 
-    if (linhaAtual !== '') {
+            const cidade =
+              document
+                .getElementById('cidade')
+                .value
+                .trim();
 
-      resultado.push(
-        linhaAtual
-      );
 
-    }
+            const endereco =
+              document
+                .getElementById('endereco')
+                .value
+                .trim();
 
-  });
 
+            const material =
+              document
+                .getElementById('material')
+                .value
+                .trim();
 
-  return resultado;
-}
 
+            const acabamento =
+              document
+                .getElementById('acabamento')
+                .value
+                .trim();
 
-/* =========================================================
-   DOWNLOAD DO PDF
-========================================================= */
 
-function baixarPDF(
-  pdfBytes,
-  nomeArquivo
-) {
+            const frontao =
+              document
+                .getElementById('frontao')
+                .value
+                .trim() || 'N/A';
 
-  const blob =
-    new Blob(
-      [pdfBytes],
-      {
-        type: 'application/pdf'
-      }
-    );
 
+            const saia =
+              document
+                .getElementById('saia')
+                .value
+                .trim() || 'N/A';
 
-  const url =
-    URL.createObjectURL(blob);
 
+            const descricaoProduto =
+              document
+                .getElementById('descricaoProduto')
+                .value || 'N/A';
 
-  const link =
-    document.createElement('a');
 
+            const materiais =
+              document
+                .getElementById('materiais')
+                .value
+                .trim() || 'N/A';
 
-  link.href = url;
 
-  link.download =
-    nomeArquivo;
+            const pagAvista =
+              document
+                .getElementById('pag_avista')
+                .value
+                .trim();
 
 
-  link.style.display = 'none';
+            const pagCartao =
+              document
+                .getElementById('pag_cartao')
+                .value
+                .trim();
 
 
-  document.body.appendChild(link);
+            const valorTotal =
+              document
+                .getElementById('valor_total')
+                .value
+                .trim();
 
-  link.click();
 
-  document.body.removeChild(link);
+            /* =================================================
+               CRIAR PDF
+            ================================================= */
 
+            const pdfDoc =
+              await PDFDocument.create();
 
-  /*
-   * Libera a memória depois do download.
-   */
 
-  setTimeout(
-    function() {
+            const page =
+              pdfDoc.addPage(
+                [595.28, 841.89]
+              );
 
-      URL.revokeObjectURL(url);
 
-    },
-    1000
-  );
-}
+            const font =
+              await pdfDoc.embedFont(
+                StandardFonts.Helvetica
+              );
 
 
-/* =========================================================
-   FORMULÁRIO
-========================================================= */
+            const fontBold =
+              await pdfDoc.embedFont(
+                StandardFonts.HelveticaBold
+              );
 
-document
-  .getElementById('orcamentoForm')
-  .addEventListener(
-    'submit',
-    async function(e) {
 
-      e.preventDefault();
+            const black =
+              rgb(
+                0,
+                0,
+                0
+              );
 
 
-      const botao =
-        document.getElementById(
-          'btnGerarPDF'
-        );
+            const darkGray =
+              rgb(
+                0.15,
+                0.15,
+                0.15
+              );
 
 
-      /*
-       * Evita clicar duas vezes enquanto
-       * o PDF está sendo criado.
-       */
+            const lightGray =
+              rgb(
+                0.92,
+                0.92,
+                0.92
+              );
 
-      botao.disabled = true;
 
-      botao.textContent =
-        'GERANDO PDF...';
+            /* =================================================
+               FUNÇÃO PARA DESENHAR CAIXA
+            ================================================= */
 
+            function drawBox(
+              x,
+              y,
+              width,
+              height,
+              borderWidth
+            ) {
 
-      try {
+              page.drawRectangle({
 
-        /*
-         * Verifica se o PDFLib carregou.
-         */
+                x: x,
 
-        if (
-          typeof PDFLib === 'undefined'
-        ) {
+                y: y,
 
-          throw new Error(
-            'A biblioteca de PDF não foi carregada. Verifique sua conexão com a internet.'
-          );
+                width: width,
 
-        }
+                height: height,
 
+                borderColor: black,
 
-        const {
-          PDFDocument,
-          rgb,
-          StandardFonts
-        } = PDFLib;
+                borderWidth:
+                  borderWidth || 1.2
 
+              });
 
-        /* =================================================
-           DADOS DO FORMULÁRIO
-        ================================================= */
+            }
 
-        const nome =
-          document
-            .getElementById('nome')
-            .value
-            .trim();
 
+            /* =================================================
+               CABEÇALHO
+            ================================================= */
 
-        const telefone =
-          document
-            .getElementById('telefone')
-            .value
-            .trim();
+            drawBox(
+              25,
+              735,
+              545,
+              80,
+              1.5
+            );
 
 
-        const cidade =
-          document
-            .getElementById('cidade')
-            .value
-            .trim();
+            page.drawText(
+              'ORÇAMENTO - MARMORARIA PEDRAS DO VALE',
+              {
+                x: 35,
+                y: 790,
+                size: 13,
+                font: fontBold,
+                color: black
+              }
+            );
 
 
-        const endereco =
-          document
-            .getElementById('endereco')
-            .value
-            .trim();
+            page.drawText(
+              'CNPJ: 68.952.061/0001-92',
+              {
+                x: 35,
+                y: 770,
+                size: 10,
+                font: fontBold,
+                color: darkGray
+              }
+            );
 
 
-        const material =
-          document
-            .getElementById('material')
-            .value
-            .trim();
+            page.drawText(
+              'CONTATO: (12) 99221-0262 / (12) 92000-3358',
+              {
+                x: 35,
+                y: 750,
+                size: 10,
+                font: fontBold,
+                color: darkGray
+              }
+            );
 
 
-        const acabamento =
-          document
-            .getElementById('acabamento')
-            .value
-            .trim();
+            /* Logo */
 
+            const logoDataUrl =
+              getLogoBase64();
 
-        const frontao =
-          document
-            .getElementById('frontao')
-            .value
-            .trim()
-          || 'N/A';
 
+            const logoImage =
+              await pdfDoc.embedPng(
+                logoDataUrl
+              );
 
-        const saia =
-          document
-            .getElementById('saia')
-            .value
-            .trim()
-          || 'N/A';
 
+            page.drawImage(
+              logoImage,
+              {
+                x: 425,
+                y: 740,
+                width: 135,
+                height: 68
+              }
+            );
 
-        /*
-         * IMPORTANTE:
-         * textarea preserva os ENTER.
-         */
 
-        const descricaoProduto =
-          document
-            .getElementById(
-              'descricaoProduto'
-            )
-            .value
-            || 'N/A';
+            /* =================================================
+               DADOS DO CLIENTE
+            ================================================= */
 
+            let y = 705;
 
-        const materiais =
-          document
-            .getElementById('materiais')
-            .value
-            .trim()
-          || 'N/A';
 
+            page.drawText(
+              'DADOS DO CLIENTE',
+              {
+                x: 25,
+                y: y,
+                size: 12,
+                font: fontBold,
+                color: black
+              }
+            );
 
-        const pagAvista =
-          document
-            .getElementById('pag_avista')
-            .value
-            .trim();
 
+            y -= 45;
 
-        const pagCartao =
-          document
-            .getElementById('pag_cartao')
-            .value
-            .trim();
 
+            drawBox(
+              25,
+              y,
+              545,
+              38,
+              1.2
+            );
 
-        const valorTotal =
-          document
-            .getElementById('valor_total')
-            .value
-            .trim();
 
+            page.drawText(
+              `Nome: ${nome}`,
+              {
+                x: 35,
+                y: y + 13,
+                size: 11,
+                font: fontBold,
+                color: black
+              }
+            );
 
-        /* =================================================
-           CRIA PDF
-        ================================================= */
 
-        const pdfDoc =
-          await PDFDocument.create();
-
-
-        const page =
-          pdfDoc.addPage(
-            [595.28, 841.89]
-          );
-
-
-        const font =
-          await pdfDoc.embedFont(
-            StandardFonts.Helvetica
-          );
-
-
-        const fontBold =
-          await pdfDoc.embedFont(
-            StandardFonts.HelveticaBold
-          );
-
-
-        const black =
-          rgb(
-            0,
-            0,
-            0
-          );
-
-
-        const darkGray =
-          rgb(
-            0.15,
-            0.15,
-            0.15
-          );
-
-
-        const lightGray =
-          rgb(
-            0.92,
-            0.92,
-            0.92
-          );
-
-
-        /* =================================================
-           FUNÇÃO PARA CAIXAS
-        ================================================= */
-
-        function drawBox(
-          x,
-          y,
-          width,
-          height,
-          borderWidth = 1.2,
-          preenchida = false
-        ) {
-
-          page.drawRectangle({
-
-            x,
-            y,
-            width,
-            height,
-
-            borderColor: black,
-
-            borderWidth: borderWidth,
-
-            ...(preenchida
-              ? {
-                  color: lightGray
-                }
-              : {})
-
-          });
-
-        }
-
-
-        /* =================================================
-           1. CABEÇALHO
-        ================================================= */
-
-        drawBox(
-          25,
-          735,
-          545,
-          80,
-          1.5
-        );
-
-
-        page.drawText(
-          'ORÇAMENTO - MARMORARIA PEDRAS DO VALE',
-          {
-            x: 35,
-            y: 790,
-            size: 13,
-            font: fontBold,
-            color: black
-          }
-        );
-
-
-        page.drawText(
-          'CNPJ: 68.952.061/0001-92',
-          {
-            x: 35,
-            y: 770,
-            size: 10,
-            font: fontBold,
-            color: darkGray
-          }
-        );
-
-
-        page.drawText(
-          'CONTATO: (12) 99221-0262 / (12) 92000-3358',
-          {
-            x: 35,
-            y: 750,
-            size: 10,
-            font: fontBold,
-            color: darkGray
-          }
-        );
-
-
-        /* Logo */
-
-        const logoDataUrl =
-          getLogoBase64();
-
-
-        const logoImage =
-          await pdfDoc.embedPng(
-            logoDataUrl
-          );
-
-
-        page.drawImage(
-          logoImage,
-          {
-            x: 425,
-            y: 740,
-            width: 135,
-            height: 68
-          }
-        );
-
-
-        /* =================================================
-           2. DADOS DO CLIENTE
-        ================================================= */
-
-        let y = 705;
-
-
-        page.drawText(
-          'DADOS DO CLIENTE',
-          {
-            x: 25,
-            y: y,
-            size: 12,
-            font: fontBold,
-            color: black
-          }
-        );
-
-
-        y -= 45;
-
-
-        drawBox(
-          25,
-          y,
-          545,
-          38
-        );
-
-
-        page.drawText(
-          `Nome: ${nome}`,
-          {
-            x: 35,
-            y: y + 13,
-            size: 11,
-            font: fontBold,
-            color: black
-          }
-        );
-
-
-        page.drawText(
-          `Telefone: ${telefone}`,
-          {
-            x: 360,
-            y: y + 13,
-            size: 11,
-            font: fontBold,
-            color: black
-          }
-        );
-
-
-        page.drawLine({
-          start: {
-            x: 350,
-            y: y
-          },
-
-          end: {
-            x: 350,
-            y: y + 38
-          },
-
-          thickness: 1.2,
-
-          color: black
-        });
-
-
-        y -= 38;
-
-
-        drawBox(
-          25,
-          y,
-          545,
-          38
-        );
-
-
-        page.drawText(
-          `Endereço da Obra: ${endereco}`,
-          {
-            x: 35,
-            y: y + 13,
-            size: 11,
-            font: fontBold,
-            color: black
-          }
-        );
-
-
-        page.drawText(
-          `Cidade: ${cidade}`,
-          {
-            x: 360,
-            y: y + 13,
-            size: 11,
-            font: fontBold,
-            color: black
-          }
-        );
-
-
-        page.drawLine({
-          start: {
-            x: 350,
-            y: y
-          },
-
-          end: {
-            x: 350,
-            y: y + 38
-          },
-
-          thickness: 1.2,
-
-          color: black
-        });
-
-
+            page.drawText(
+              `Telefone: ${telefone}`,
+              {
+                x: 360,
+              
